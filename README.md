@@ -1,6 +1,8 @@
 
 # **Unity Week 6: Three-Dimensional Scene-Building and Navigation**
 
+Play on itch: https://twobitcode.itch.io/07-unity-3d-terrain-ai
+
 A project with step-by-step scenes illustrating how to construct a 3D game, including:
 
 - 🏗️ **Scene Modelling**: Using Terrain Tools and ProGrids for creating and aligning structures.
@@ -30,6 +32,18 @@ This project expands the **3-e complete building** scene by adding a new bedroom
 
 ### **4. Improved Lighting**
 - 💡 Added **Point Lights** to illuminate the room effectively, including the lamp as a light source.
+- 
+### **5. New Player Interactions**
+- 🏃‍♂️ **Jumping Ability**: The player can now jump using the **spacebar**.
+  script reference: https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/0599e31208252717c0cfef433c001f0fcd4a5dcd/Assets/Scripts/1-player/CharacterKeyboardMover.cs#L74
+  
+- 👀 **Interactive Objects**: When the player is near another **capsule GameObject**, a message will appear when the **E key** is pressed.
+  script reference: https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/main/Assets/Scripts/3-objects/popMessageAction.cs
+
+- 💡 **Light Control**: The player can **turn the bedroom light on and off** by pressing the **L key**. If the player is too far from the light, it will automatically turn off after a certain radius.
+  script reference: https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/main/Assets/Scripts/3-objects/LightAction.cs
+
+The main script for the ActionKeyPressed functinalities: https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/main/Assets/Scripts/3-objects/ActionOnKeyPress.cs
 
 ---
 ### **Programming**:
