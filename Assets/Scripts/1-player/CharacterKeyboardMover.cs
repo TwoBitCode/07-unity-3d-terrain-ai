@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.UI;
 
 
 /**
@@ -15,8 +16,22 @@ public class CharacterKeyboardMover: MonoBehaviour {
     private CharacterController cc;
     
     [SerializeField] InputAction moveAction;
-    private void OnEnable() { moveAction.Enable(); }
-    private void OnDisable() { moveAction.Disable(); }
+
+
+    [SerializeField] InputAction jumpAction;
+    [SerializeField] float jumpSpeed = 10f;
+    [SerializeField] float slowDownAtJump = 0.5f;
+
+    private void OnEnable() 
+    { 
+        moveAction.Enable();
+        jumpAction.Enable();
+    }
+    private void OnDisable() 
+    { 
+        moveAction.Disable();
+        jumpAction.Disable();
+    }
     void OnValidate() {
         // Provide default bindings for the input actions.
         // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
@@ -28,6 +43,11 @@ public class CharacterKeyboardMover: MonoBehaviour {
                 .With("Down", "<Keyboard>/downArrow")
                 .With("Left", "<Keyboard>/leftArrow")
                 .With("Right", "<Keyboard>/rightArrow");
+
+        if (jumpAction == null)
+            jumpAction = new InputAction(type: InputActionType.Button);
+        if (jumpAction.bindings.Count == 0)
+            jumpAction.AddBinding("<Keyboard>/space");
     }
 
     void Start() {
@@ -35,19 +55,34 @@ public class CharacterKeyboardMover: MonoBehaviour {
     }
 
     Vector3 velocity = new Vector3(0,0,0);
+    void Update()
+    {
+        // Get movement input
+        Vector2 input = moveAction.ReadValue<Vector2>();
+        Vector3 inputVelocity = new Vector3(input.x, 0, input.y) * speed;
 
-    void Update()  {
-        if (cc.isGrounded) {
-            Vector3 movement = moveAction.ReadValue<Vector2>(); // Implicitly convert Vector2 to Vector3, setting z=0.
-            velocity.x = movement.x * speed;
-            velocity.z = movement.y * speed;
-        } else {
-            velocity.y -= gravity*Time.deltaTime;
+        if (cc.isGrounded)
+        {
+            // Update horizontal velocity when grounded
+            velocity.x = inputVelocity.x;
+            velocity.z = inputVelocity.z;
+
+            // Handle jump
+            if (jumpAction.WasPressedThisFrame())
+            {
+                velocity.y = jumpSpeed; // Apply vertical jump velocity
+                velocity.x *= slowDownAtJump;
+                velocity.z *= slowDownAtJump;
+            }
+        }
+        else
+        {
+            // Apply gravity when airborne
+            velocity.y -= gravity * Time.deltaTime;
         }
 
         // Move in the direction you look:
-        velocity = transform.TransformDirection(velocity);
-
-        cc.Move(velocity * Time.deltaTime);
+        Vector3 move = transform.TransformDirection(velocity);
+        cc.Move(move * Time.deltaTime);
     }
 }
