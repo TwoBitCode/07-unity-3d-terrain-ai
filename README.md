@@ -1,5 +1,5 @@
 
-# **Unity Week 6: Three-Dimensional Scene-Building and Navigation**
+# **Unity Week 7: Three-Dimensional Scene-Building and Navigation**
 
 Play on itch: https://twobitcode.itch.io/07-unity-3d-terrain-ai
 
