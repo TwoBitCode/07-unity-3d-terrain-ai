@@ -11,11 +11,13 @@ public class DemoMover : MonoBehaviour
     Transform target;
 
     private NavMeshAgent agent;
-    void Start() {
+    void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update() {
+    private void Update()
+    {
         agent.destination = target.position;
     }
 }

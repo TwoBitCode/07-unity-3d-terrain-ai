@@ -8,13 +8,14 @@ using UnityEngine.Rendering.UI;
  * This component moves a player controlled with a CharacterController using the keyboard.
  */
 [RequireComponent(typeof(CharacterController))]
-public class CharacterKeyboardMover: MonoBehaviour {
+public class CharacterKeyboardMover : MonoBehaviour
+{
     [Tooltip("Speed of player keyboard-movement, in meters/second")]
     [SerializeField] float speed = 3.5f;
     [SerializeField] float gravity = 9.81f;
 
     private CharacterController cc;
-    
+
     [SerializeField] InputAction moveAction;
 
 
@@ -22,17 +23,18 @@ public class CharacterKeyboardMover: MonoBehaviour {
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] float slowDownAtJump = 0.5f;
 
-    private void OnEnable() 
-    { 
+    private void OnEnable()
+    {
         moveAction.Enable();
         jumpAction.Enable();
     }
-    private void OnDisable() 
-    { 
+    private void OnDisable()
+    {
         moveAction.Disable();
         jumpAction.Disable();
     }
-    void OnValidate() {
+    void OnValidate()
+    {
         // Provide default bindings for the input actions.
         // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
         if (moveAction == null)
@@ -50,11 +52,12 @@ public class CharacterKeyboardMover: MonoBehaviour {
             jumpAction.AddBinding("<Keyboard>/space");
     }
 
-    void Start() {
+    void Start()
+    {
         cc = GetComponent<CharacterController>();
     }
 
-    Vector3 velocity = new Vector3(0,0,0);
+    Vector3 velocity = new Vector3(0, 0, 0);
     void Update()
     {
         // Get movement input

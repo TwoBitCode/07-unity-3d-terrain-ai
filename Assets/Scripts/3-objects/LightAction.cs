@@ -15,7 +15,7 @@ public class LightAction : MonoBehaviour, IAction
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void EnableDisableActionFunc(bool isActionEnabled)

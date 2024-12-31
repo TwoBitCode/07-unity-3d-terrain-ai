@@ -19,6 +19,7 @@ public class ActionOnKeyPress : MonoBehaviour
     {
         ActionOnPress.Enable();
     }
+
     private void OnDisable()
     {
         ActionOnPress.Disable();
@@ -40,7 +41,7 @@ public class ActionOnKeyPress : MonoBehaviour
             isActionEnabled = !isActionEnabled;
             action.EnableDisableActionFunc(isActionEnabled);
         }
-        else if(DistanceToTarget() > radiusToWatch)
+        else if (DistanceToTarget() > radiusToWatch)
         {
             action.EnableDisableActionFunc(false);
         }
