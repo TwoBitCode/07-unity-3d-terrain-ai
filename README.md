@@ -35,7 +35,8 @@ This project expands the **3-e complete building** scene by adding a new bedroom
 - 
 ### **5. New Player Interactions**
 - 🏃‍♂️ **Jumping Ability**: The player can now jump using the **spacebar**.
-  script reference: [https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/0599e31208252717c0cfef433c001f0fcd4a5dcd/Assets/Scripts/1-player/CharacterKeyboardMover.cs#L74](https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/b44bf5b6d86c935ff1ce149d2f4629a75480b4eb/Assets/Scripts/1-player/CharacterKeyboardMover.cs#L73-L79)
+  script reference:
+  https://github.com/TwoBitCode/07-unity-3d-terrain-ai/blob/3ee98bd3164dd5f1ee73b841408d0c81ecd0c736/Assets/Scripts/1-player/CharacterKeyboardMover.cs#L73-L79
   
 - 👀 **Interactive Objects**: When the player is near another **capsule GameObject**, a message will appear when the **E key** is pressed.
   script reference:
